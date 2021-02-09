@@ -32,7 +32,8 @@ app.post('/api/insert', (req, res) => {
     const newMember = req.body.newMember;
 
     const sqlQueryInsert = "INSERT INTO crew_members (crew_membername) VALUES (?)";
-    db.query(sqlQueryInsert, [newMember], (err, result) => {
+    db.query(sqlQueryInsert, newMember, (err, result) => {
+        if(err) throw err;
         console.log(result);
     });
 });
