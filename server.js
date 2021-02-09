@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-//Select Query wich would send in result attempting to url /api/get
+//Select Query wich would send in result attempting to url  /api/get
 app.get('/api/get', (req, res)=>{
 
     const sqlDisplayAll = "SELECT * FROM crew_members";
