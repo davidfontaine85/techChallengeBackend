@@ -5,10 +5,10 @@ const app = express();
 const mysql = require('mysql');
 
 const db = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "jason_db",
+    host: "eu-cdbr-west-03.cleardb.net",
+    user: "b2b69d7a7cdafd",
+    password: "967e57da",
+    database: "heroku_f3c9d4a49ca0132",
 });
 
 app.use(cors());
@@ -19,8 +19,9 @@ app.get('/api/get', (req, res)=>{
 
     const sqlDisplayAll = "SELECT * FROM crew_members";
     db.query(sqlDisplayAll, (err, result)=>{
-        console.log(result);
+        if(err) throw err;
         res.send(result);
+        console.log(result);
     });
 });
 
@@ -37,3 +38,4 @@ app.post('/api/insert', (req, res) => {
 app.listen(process.env.PORT || PORT, ()=> {
     console.log('Running on port ${PORT}');
 });
+
