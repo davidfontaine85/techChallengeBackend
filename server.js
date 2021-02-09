@@ -20,8 +20,8 @@ app.get('/api/get', (req, res)=>{
     const sqlDisplayAll = "SELECT * FROM crew_members";
     db.query(sqlDisplayAll, (err, result)=>{
         if(err) throw err;
-        res.send(result.data);
-        console.log(result.data);
+        res.send(result);
+        console.log(result);
     });
 });
 
