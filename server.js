@@ -1,8 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require('express');                 //Using express framework to handle routing bridge between Frontend and Backend and createServer
+const bodyParser = require('body-parser');          //Using to parse request body
+const cors = require('cors');                       //Using  to handle Cross Origin coming from Backend(Heroku) and Frontend(Netifly)
 const app = express();
-const mysql = require('mysql');
+const mysql = require('mysql');                     //Using mysql pluggin to connect Database comming from heroku and handling with ClearDB
 
 const db = mysql.createPool({
     host: "eu-cdbr-west-03.cleardb.net",
@@ -11,12 +11,15 @@ const db = mysql.createPool({
     database: "heroku_f3c9d4a49ca0132",
 });
 
+
+//Applicate all middleWare: CORS for clean Header
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-//Select Query wich would send in result attempting to url /api/get
+//Select Query wich fetch all crew_members table and send to the front by '/api/get'
+//Throwing an Array of Object
 app.get('/api/get', (req, res)=>{
 
     const sqlDisplayAll = "SELECT * FROM crew_members";
@@ -27,6 +30,7 @@ app.get('/api/get', (req, res)=>{
     });
 });
 
+//Insert Query from frontend Input and writing on the crew_member table
 app.post('/api/insert', (req, res) => {
 
     const newMember = req.body.newMember;
@@ -37,6 +41,8 @@ app.post('/api/insert', (req, res) => {
         console.log(result);
     });
 });
+
+
 
 app.listen(process.env.PORT || PORT, ()=> {
     console.log('Running on port ${PORT}');
