@@ -6,10 +6,10 @@ const helmet = require('helmet');                   //Secure CSP, X-content-type
 const app = express();
 
 const db = mysql.createPool({
-    host: "eu-cdbr-west-03.cleardb.net",
-    user: "b2b69d7a7cdafd",
-    password: "967e57da",
-    database: "heroku_f3c9d4a49ca0132",
+    host: "*********",
+    user: "*********",
+    password: "********",
+    database: "********",
 });
 
 
